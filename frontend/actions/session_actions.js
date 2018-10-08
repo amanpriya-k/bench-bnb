@@ -6,13 +6,16 @@ import * as SessionAPIUtil from '../util/session_api_util';
 
 // regular action creators
 
-export const receiveCurrentUser = (currentUser) => ({
+export const receiveCurrentUser = (currentUser) => {
+  // debugger
+  return {
   type: RECEIVE_CURRENT_USER,
   currentUser
-});
+  }
+};
 
 export const logoutCurrentUser = () => ({
-  type: RECEIVE_CURRENT_USER
+  type: LOGOUT_CURRENT_USER
 });
 
 export const receiveSessionsErrors = (errors) => ({
@@ -22,20 +25,20 @@ export const receiveSessionsErrors = (errors) => ({
 
 // thunk action creators
 
-export const login = (user) => (
+export const login = (user) => (dispatch) => (
   SessionAPIUtil.login(user)
-    .then( (user) => receiveCurrentUser(user),
-           (errors) => receiveSessionsErrors(errors) )
+    .then( (user) => dispatch(receiveCurrentUser(user)),
+           (errors) => dispatch(receiveSessionsErrors(errors.responseJSON)) )
 );
 
-export const signup = (user) => (
+export const signup = (user) => (dispatch) => (
   SessionAPIUtil.signup(user)
-    .then( (user) => receiveCurrentUser(user),
-           (errors) => receiveSessionsErrors(errors) )
+    .then( (user) => dispatch(receiveCurrentUser(user)),
+           (errors) => dispatch(receiveSessionsErrors(errors.responseJSON)) )
 );
 
-export const logout = () => (
+export const logout = () => (dispatch) => (
   SessionAPIUtil.logout()
-    .then( () => logoutCurrentUser(),
-           (errors) => receiveSessionsErrors(errors) )
+    .then( () => dispatch(logoutCurrentUser()),
+           (errors) => dispatch(receiveSessionsErrors(errors.responseJSON)) )
 );
