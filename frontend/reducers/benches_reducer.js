@@ -1,7 +1,8 @@
 import { RECEIVE_BENCHES } from '../actions/bench_actions';
 
-const benchReducer = (state, action) => {
+const benchesReducer = (state = {}, action) => {
   Object.freeze(state);
+  // debugger
   switch(action.type) {
     case RECEIVE_BENCHES:
       return action.benches;

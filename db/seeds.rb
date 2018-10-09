@@ -10,8 +10,8 @@ Bench.destroy_all
 
 i = 1
 (10).times do
-  lat = rand(37.752999..37.757190)
-  lng = rand(-122.444894..-122.442040)
+  lat = rand(37.694191...37.791612)
+  lng = rand(-122.494894...-122.412040)
   Bench.create(description: "bench ##{i}", lat: lat, lng: lng)
   i += 1
 end

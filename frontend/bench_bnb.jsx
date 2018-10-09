@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 import { receiveCurrentUser, signup, login, logout } from './actions/session_actions';
-import { fetchBenches, getSingleBench } from './util/bench_api_util'
+import { fetchBenches } from './actions/bench_actions'
 
 document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
@@ -27,6 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.fetchBenches = fetchBenches;
-  window.getSingleBench = getSingleBench;
+  // window.getSingleBench = getSingleBench;
 
 });

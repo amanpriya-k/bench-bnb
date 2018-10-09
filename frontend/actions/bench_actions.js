@@ -11,7 +11,7 @@ export const receiveBenches = (benches) => ({
 
 // thunk action
 
-export const fetchBenches = () => (dispatch) (
+export const fetchBenches = () => (dispatch) => (
   BenchUtil.fetchBenches()
     .then(benches => dispatch(receiveBenches(benches)))
 );
